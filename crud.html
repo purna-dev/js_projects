@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+    </style>
+</head>
+<body>
+
+    <input type="text" id="product_id" placeholder="enter Product id">
+    <input type="text" id="product_name" placeholder="enter Product name">
+    <input type="text" id="product_dis" placeholder="enter Product discription">
+    <input type="number" id="product_price" placeholder="enter Product price">
+    <button class="btn_insert" id="btn_insert">Insert</button>
+    <button class="btn_insert" id="btn_search">Search</button>
+    <button class="btn_insert" id="btn_update">Update</button>
+    <button class="btn_insert" id="btn_delete">Delete</button>
+    
+
+    
+    <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyCClaplIvNpHlAIVpfw0ehjruhICXW79rM",
+    authDomain: "shree-ganpati-kraft-packers.firebaseapp.com",
+    projectId: "shree-ganpati-kraft-packers",
+    storageBucket: "shree-ganpati-kraft-packers.appspot.com",
+    messagingSenderId: "217420602170",
+    appId: "1:217420602170:web:d64ddb4a3b0f8b66be0e03"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  import {getDatabase, ref, set, get, child, update, remove}
+  from "https://www.gstatic.com/firebasejs/9.6.4/firebase-database.js"
+
+  const db = getDatabase();
+
+  var btn_insert = document.getElementById("btn_insert");
+
+  var product_id = document.getElementById("product_id");
+  var product_name = document.getElementById("product_name");
+  var product_dis = document.getElementById("product_dis");
+  var product_price = document.getElementById("product_price");
+
+  function insert(){
+      set(ref(db,"ProductData/"+ product_id.value),{
+        ProductId : product_id.value,
+        ProductName : product_name.value,
+        ProductDiscription : product_dis.value,
+        product_price : product_price.value 
+      })
+      .then(()=>{
+          alert("Product added successfully");
+          product_name.value="";
+      product_dis.vakue="";
+      product_price.value="";
+      })
+      .catch((error)=>{
+          alert("Not added"+error);
+      });
+
+      
+
+      
+  }
+
+  function select(){
+        let refdb = ref(db);
+      get(child(refdb,"ProductData/"+ product_id.value)).then((snapshot)=>{
+        if(snapshot.exists()){
+            product_name.value = snapshot.val().ProductName;
+            product_dis.value = snapshot.val().ProductDiscription;
+            product_price.value = snapshot.val().product_price;
+        }
+        else{
+            alert("Not found");
+        }
+      })
+      .catch((error)=>{
+          alert("error happend"+error);
+      })
+  }
+
+    function updated(){
+        update(ref(db,"ProductData/"+ product_id.value),{
+        
+        ProductName : product_name.value,
+        ProductDiscription : product_dis.value,
+        product_price : product_price.value 
+      })
+      .then(()=>{
+          alert("Product updated successfully");
+          product_name.value="";
+      product_dis.value="";
+      product_price.value="";
+      })
+      .catch((error)=>{
+          alert("Not added"+error);
+      });
+      
+  }
+
+
+   function removed() {
+        remove(ref(db,"ProductData/"+ product_id.value))
+      .then(()=>{
+          alert("Product remove successfully");
+      })
+      .catch((error)=>{
+          alert("Not added"+error);
+      });
+      
+  }
+
+  
+
+  //----insert operation------//
+  btn_insert.addEventListener("click",insert);
+  //------search ------//
+  document.getElementById("btn_search").addEventListener("click",select);
+  //-------update--//
+  document.getElementById("btn_update").addEventListener("click",updated);
+
+  //-----remove---//
+  document.getElementById("btn_delete").addEventListener("click",removed);
+
+
+</script>
+</body>
+</html>

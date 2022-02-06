@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+     <div class="formContainer">
+    <h1>Enter Credentials Here:</h1>
+    <input type="email" placeholder="email here" id="email"><br>
+    <input type="password" placeholder="password here" id="password"><br>
+    <button onclick="signUp()" id="signUp">SignUp</button>
+    <button onclick="signIn()" id="signIp">SignIn</button>
+    <button onclick="signOut()" id="signOut">SignOut</button>
+</div>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.5/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyCClaplIvNpHlAIVpfw0ehjruhICXW79rM",
+    authDomain: "shree-ganpati-kraft-packers.firebaseapp.com",
+    databaseURL: "https://shree-ganpati-kraft-packers-default-rtdb.firebaseio.com",
+    projectId: "shree-ganpati-kraft-packers",
+    storageBucket: "shree-ganpati-kraft-packers.appspot.com",
+    messagingSenderId: "217420602170",
+    appId: "1:217420602170:web:d64ddb4a3b0f8b66be0e03"
+  };
+
+  // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+  const auth =  firebase.auth();
+
+  //signup function
+  function signUp(){
+    var email = document.getElementById("email");
+    var password = document.getElementById("password");
+
+    const promise = auth.createUserWithEmailAndPassword(email.value,password.value);
+    //
+    promise.catch(e=>alert(e.message));
+    alert("SignUp Successfully");
+  }
+
+  //signIN function
+  function  signIn(){
+    var email = document.getElementById("email");
+    var password  = document.getElementById("password");
+    const promise = auth.signInWithEmailAndPassword(email.value,password.value);
+    promise.catch(e=>alert(e.message));
+    
+  }
+
+
+  //signOut
+
+  function signOut(){
+    auth.signOut();
+    alert("SignOut Successfully from System");
+  }
+
+  //active user to homepage
+  firebase.auth().onAuthStateChanged((user)=>{
+    if(user){
+      var email = user.email;
+      alert("Active user "+email);
+
+    }else{
+      alert("No Active user Found")
+    }
+  })
+    </script>
+    
+</body>
+</html>

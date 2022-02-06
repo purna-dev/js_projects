@@ -1,0 +1,161 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+
+}
+
+.btn {
+    padding: 5px 15px;
+    background-color: royalblue;
+    margin-top: 50px;
+    font-size: 1.5rem;
+    color: white;
+    box-shadow: -6px 6px 0px rgb(33, 56, 126);
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: rgb(54, 92, 207);
+
+}
+
+.btn:active {
+    position: relative;
+    top: 3px;
+    left: -3px;
+    box-shadow: none;
+
+}
+
+.btn::before {
+    position: absolute;
+    content: "";
+    border-right: 4.4px solid rgb(33, 56, 126);
+    border-bottom: 4.4px solid rgb(33, 56, 126);
+    border-top: 1px solid transparent;
+    border-left: 1px solid transparent;
+    display: block;
+    left: 202px;
+    top: 52px;
+}
+
+.btn::after {
+    position: absolute;
+    content: "";
+    border-left: 4.7px solid rgb(33, 56, 126);
+    border-top: 5px solid rgb(33, 56, 126);
+    border-top: 1px solid transparent;
+    border-left: 1px solid transparent;
+    display: block;
+    /* right: 207px;
+    bottom: 515px; */
+}
+/* button{
+    margin: 50px auto;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0px 6px 2px #aaaa;
+
+} */
+.section{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+.card{
+
+    width: 25em;
+    height: 13em;
+    background-image: linear-gradient(to bottom right ,royalblue,purple);
+    border-radius: 1em;
+    box-shadow: 0 3px 0 #aaaa,
+    3px 0px 0 #aaaa,
+    0 -2px 1px #aaaa,
+    -1px 3px 1px #aaaa;
+    outline: none;
+    border:  inset solid 2px black;
+    color: black;
+}
+.card::before{
+    content: "";
+    display: inline-block;
+    position: relative;
+    top: 4em;
+    left: -3em;
+    width: 6em;
+    height: 6em;
+    border-color: inset black;
+    background-color: white;
+    
+    border-radius: 50%;
+}
+.card::after {
+    content: "";
+    display: inline-block;
+    position: relative;
+    top: 4em;
+    right: -15em;
+    width: 6em;
+    height: 6em;
+    border-color: inset black;
+    background-color: royalblue;
+    box-shadow: 1px 2px 0 rgba(0, 0, 0,0.2);
+
+    border-radius: 50%;
+}
+.card2{
+    width: 25em;
+    height: 16em;
+    border-radius: 2em;
+    box-shadow: 2px 3px 1px 1px #aaaa;
+    background-color: blueviolet;
+    margin-bottom: 3em;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+.cir{
+    width: 7em;
+    height: 7em;
+    border-radius: 50%;
+    background-color:white;
+    position: relative;
+    top: 4.5em;
+    left: 3em;
+}
+.btn_2{
+    width: 12em;
+    height: em;
+
+}
+.cir2{
+    background-color: royalblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    left: -4.5em;
+   
+    box-shadow: 2px 2px 1px 0px #aaaa,
+    -2px -2px 1px 0px #aaaa;
+}
+.img{
+    width: 10em;
+    height: 10em;
+    display: flex;
+    clip-path: circle(50% at 50% 50%);
+    
+}
+img{
+box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+}
