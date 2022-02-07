@@ -7,19 +7,29 @@
     <title>Document</title>
 </head>
 <body>
+    <span>"</span><h1 id="ti"></h1><span>"</span>
+    <p id="au"></p>
+    <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
     <script>
+        responsiveVoice.speak("hello guys");
         // let apiurl = fetch('https://api.openfintech.io/v1/organizations/{id}/icon?w=20&h=20');
         // apiurl.then((res)=>res.json()).catch((error)=>{
         //     console.log("error fond",error);
         // })
         // console.log(apiurl);
+
+        let ti = document.getElementById("ti");
+            let au = document.getElementById("au");
         async function getapi(){
-            const apiurl ='https://jsonplaceholder.typicode.com/todos/2';
+            const apiurl ='https://api.quotable.io/random';
             try{
             let response = await fetch(apiurl);
             console.log(response);
             let data = await response.json();
-            console.log(data.title);
+            console.log(data);
+
+            ti.innerHTML=data.content;
+             au.innerHTML=data.author;
             for(let key in data){
                 console.log(key,data[key]);
             }
